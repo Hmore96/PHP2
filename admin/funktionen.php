@@ -6,3 +6,18 @@ session_start();
  //MySQLI mitteilen, dass unsere Befehle als utf8 kommen
 
  mysqli_set_charset($db, "utf8");
+
+
+ function escape($post_var) {
+    global $db;
+    return mysqli_real_escape_string($db, $post_var);
+
+ }
+
+ function ist_eingeloggt(){
+    if (empty ($_SESSION["eingeloggt"])) {
+        header("LOCATION: login.php");
+        exit; //damit der teil darunter nicht mehr zum Browser geschickt wird.
+        
+    }
+ }

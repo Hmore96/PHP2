@@ -10,6 +10,7 @@
             margin: 0px;
             background: #ccd5ae;
             color: #fefae0;
+            text-align: center;
         }
         .row {background: #d4a373};
     </style>
@@ -19,7 +20,7 @@
         <ul class="row">
             <li><a href="index.php">Start</li>
             <li><a href="zutaten_liste.php">Zutaten</li>
-            <li></li>
+            <li><a href="logout.php">ausloggen</a> Eingeloggt als: <?php echo $_SESSION["benutzername"]?></li>
             <li></li>
         </ul>
     </nav>

@@ -1,10 +1,17 @@
 <?php 
 
 include "funktionen.php";
+ist_eingeloggt();
 include "kopf.php";
 
 
 ?>
+    <h1>Zutaten</h1>
+    <a href="zutaten_neu.php">Zutat hinzufügen</a>
+<?php
+
+?>
+
 <main>
     <h1>
         Zutaten
