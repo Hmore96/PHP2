@@ -9,10 +9,27 @@
         body {
             margin: 0px;
             background: #ccd5ae;
-            color: #fefae0;
+            color: black;
             text-align: center;
         }
-        .row {background: #d4a373};
+        .row {background: #d4a373;
+            text-decoration: none;
+        };
+
+        ul {
+            display: none;
+        }
+
+         .test  {
+            color: green;
+        }
+        a {
+            color: purple;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>

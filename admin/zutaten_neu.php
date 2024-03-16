@@ -4,32 +4,50 @@ ist_eingeloggt();
 
 $errors = array();
 
+$erfolg = false;
+
 include "kopf.php";
 //Prüfen ob Formular abgeschickt
 if (!empty($_POST)){
 
     $sql_titel = escape($_POST["titel"]);
+    $sql_kcal_pro_100 = escape($_POST["kcal_pro_100"]);
+    $sql_menge = escape($_POST["menge"]);
+    $sql_einheit = escape($_POST["einheit"]);
+
+
 
     if ( empty($sql_titel)) {
-    $errors[] = "Bitte geben Sie einen Titel an";}
+    $errors[] = "Bitte geben Sie einen Titel an";
+    }
     else {
-        $result = mysqli_query($db, "SELECT * FROM zutaten WHERE titel = '{$sql_titel}'");
+        $result = query("SELECT * FROM zutaten WHERE titel = '{$sql_titel}'");
         //überprüfen, ob es Zutat gibt
         $row = mysqli_fetch_assoc($result);
         if($row){
             $errors[] = "Zutat gibt es bereits";
         }
     }
-
     if ( empty($_POST["kcal_pro_100"])){
-        $errors[] = "Bitte geben Sie die Kalorien an an";}
-     if ( empty($_POST["menge"])){
-        $errors[] = "Bitte geben Sie eine Menge an";}
+        $errors[] = "Bitte geben Sie die Kalorien an an";
+    }
+    if ( empty($_POST["menge"])){
+        $errors[] = "Bitte geben Sie eine Menge an";
+    }
     if ( empty($_POST["einheit"])){
-        $errors[] = "Bitte geben Sie eine Einheit an"
-    ;}
-}
+        $errors[] = "Bitte geben Sie eine Einheit an";
+    }
 
+    if(empty($errors)){
+        query("INSERT INTO zutaten SET titel = '{$sql_titel}',
+        kcal_pro_100 = '{$sql_kcal_pro_100}',
+        menge = '{$sql_menge}',
+        einheit = '{$sql_einheit}'
+        ");
+
+        $erfolg= true;
+    }
+}
 
 
 ?>
@@ -41,6 +59,10 @@ if (!empty($_POST)){
     <?php 
     foreach ($errors as $index => $error){
         echo "<li>{$error}</li>";
+    }
+    if($erfolg){
+
+        echo "<p>Zutat wurde erfolgreich angelegt.</br><a href='zutaten_liste.php'>Zurück zur Liste</a></p>";
     }
 
     ?>

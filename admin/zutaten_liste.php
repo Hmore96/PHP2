@@ -13,12 +13,9 @@ include "kopf.php";
 ?>
 
 <main>
-    <h1>
-        Zutaten
-    </h1>
 
 <?php
-    $result = mysqli_query($db, "SELECT * FROM zutaten ORDER BY titel ASC");
+    $result = query("SELECT * FROM zutaten ORDER BY titel ASC");
 
     //print_r($result);
 
@@ -26,28 +23,34 @@ include "kopf.php";
 
     echo "<thread>";
     echo "<tr>";
-echo "<tr>";
-echo "<th>Titel</th>";
-echo "<th>Menge</th>";
-echo "<th>KCAL/100</th>";
+    echo "<tr>";
+    echo "<th>Titel</th>";
+    echo "<th>Menge</th>";
+    echo "<th>Einheit</th>";
+    echo "<th>KCAL/100</th>";
 
 
     echo "</tr>";
     echo "</thread>";
 
     echo "<tbody>";
-while($row = mysqli_fetch_assoc($result)) {
+    while($row = mysqli_fetch_assoc($result)) {
     echo "<tr>";
     echo "<td>" . $row["titel"] . "</td>";
     echo "<td>" . $row["menge"] . "</td>";
+    echo "<td>" . $row["einheit"] . "</td>";
     echo "<td>" . $row["kcal_pro_100"] . "</td>";
+    echo "<td>" .
+    "<a href='zutaten_bearbeiten.php?id={$row["id"]}'>bearbeiten</a>". " " .
+    "<a href='zutaten_entfernen.php?id={$row["id"]}'>entfernen</a>". "</td>";
+
 
 
     echo "</tr>";
 
 }
     echo "</tbody>";
- echo "</table>";
+    echo "</table>";
 
 ?>
 </main>

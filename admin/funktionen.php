@@ -8,6 +8,14 @@ session_start();
  mysqli_set_charset($db, "utf8");
 
 
+
+ function query ($sql_befehl){
+   global $db;
+   $result = mysqli_query($db, $sql_befehl);
+
+   return $result;
+ }
+
  function escape($post_var) {
     global $db;
     return mysqli_real_escape_string($db, $post_var);

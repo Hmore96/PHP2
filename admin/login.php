@@ -12,7 +12,7 @@ include "funktionen.php";
                 //diese Funktion bewahrt vor sqlinjection 
         $sql_benutzername =  mysqli_real_escape_string($db, $_POST["benutzername"]);
 
-             $result = mysqli_query($db, "SELECT * FROM benutzer WHERE benutzername = '{$sql_benutzername}'");
+             $result = query("SELECT * FROM benutzer WHERE benutzername = '{$sql_benutzername}'");
              //print_r($result);
 //Datzensatz mit Passwort abgleichen
             $row = mysqli_fetch_assoc($result);
@@ -30,7 +30,7 @@ include "funktionen.php";
                     $_SESSION["benutzername"] = $row["benutzername"];
 
                     //Anzahl Logins in der DB speichern
-                    mysqli_query($db, "UPDATE benutzer SET anzahl_logins = anzahl_logins + 1,
+                   query("UPDATE benutzer SET anzahl_logins = anzahl_logins + 1,
                     letzter_login = NOW()
                      WHERE id = {$row["id"]}");
 
