@@ -38,6 +38,7 @@
             <li><a href="index.php">Start</li>
             <li><a href="zutaten_liste.php">Zutaten</li>
             <li><a href="logout.php">ausloggen</a> Eingeloggt als: <?php echo $_SESSION["benutzername"]?></li>
-            <li></li>
+            <li><a href="rezepte.php">Rezepte</a></li>
+            
         </ul>
     </nav>

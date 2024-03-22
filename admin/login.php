@@ -28,6 +28,7 @@ include "funktionen.php";
 
                     $_SESSION["eingeloggt"] = true;
                     $_SESSION["benutzername"] = $row["benutzername"];
+                    $_SESSION["benutzer_id"] = $row["id"];
 
                     //Anzahl Logins in der DB speichern
                    query("UPDATE benutzer SET anzahl_logins = anzahl_logins + 1,

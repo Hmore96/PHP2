@@ -17,7 +17,7 @@ if(!empty($_POST)) {
         }
     else {
         //Überprüfen ob die Zutat bereits existiert
-        $result = query("SELECT * FROM zutaten WHERE titel = '{$sql_titel}' AND id!= {$sql_id}");
+        $result = query("SELECT * FROM zutaten WHERE titel = '{$sql_titel}' AND id != {$sql_id}");
         //überprüfen, ob es Zutat gibt
         $row = mysqli_fetch_assoc($result);
         if($row){
@@ -73,7 +73,7 @@ if ($erfolg == true){
 <form action="zutaten_bearbeiten.php?id=<?php echo $row["id"] ?>" method="post">
 <div>
     <label for="titel">Zutat:</label><br>
-    <input type="text" name="titel" id="titel" value="<?php  if(!$erfolg && !empty($_POST["titel"]))  {
+    <input type="text" name="titel" id="titel" value="<?php  if(!$erfolg && (!empty($_POST["titel"])))  {
         echo htmlspecialchars($_POST["titel"]);
     }
         else {
