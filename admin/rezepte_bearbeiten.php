@@ -43,6 +43,7 @@ if (!empty($_POST)){
         query("INSERT INTO rezepte SET titel = '{$sql_titel}',
         beschreibung = '{$sql_beschreibung}',
         benutzer_id = '{$sql_benutzer_id}'
+        WHERE id = '{$sql_id}'
         ");
 
     $neue_rezepte_id = mysqli_insert_id($db);
